@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/biniamsea2/JBLM/issues"
   },
-  "homepage": "https://github.com/biniamsea2/JBLM#readme"
+  "homepage": "https://github.com/biniamsea2/JBLM#readme",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "pg": "^7.12.1",
+    "superagent": "^5.1.0"
+  }
 }
