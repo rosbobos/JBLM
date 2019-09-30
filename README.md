@@ -1,14 +1,14 @@
 # JBLM
 
-##The name of the project: JBLM Unlimited Website
+The name of the project: JBLM Unlimited Website
 
-##Names of the team members:
+Names of the team members:
 Biniam Tesfamarian, Elle Young, Karina Chen, Jon Kimball
 
-##Project Description:
+Project Description:
 The JBLM Unlimited website will be used for service members to see a google calendar with events and links. There will be a Resource page that has all the contact information and links for JBLM's partners. An Admin page will also be built for admin users to add and edit information on the website. An admin route will be created and only the admin users who know the route url can access and make changes to the website.
 
-##Problem Domain:
+Problem Domain:
 As a JBLM member, I want to come to the Home page of this website to see a preview of the 5 upcoming events shown on the Home page, so I can know what events are coming soon without having to go to the Calendar page.
 As a JBLM member, I want to be able to contact JBLM's admin on the Home page through social media links or email links, so I can know the contact information once I come to this website. 
 As a JBLM member, I want to come to this website to see a calendar with all the upcoming events and all the past events, so I can plan my schedule accordingly to the event schedules.
@@ -22,7 +22,7 @@ As an admin user, I want the Resource page to show JBLM's partners' titles, logo
 As an admin user, I want to be able to add and change information about events and resources on this website.
 As an admin user, I want to have some sort of portal security so only the admin users can change events and resources information on this website.
 
-##Project Scope:
+Project Scope:
 MVP -
 Calendar Page:
 Use Google Calendar API to show all the events. Click on an event then the detail view shows up. The calendar needs to be scrollable or clickable to show previous and furture calendar. Inside the detail view of an event, the link should bring the users to the event page outside of JBLM Unlimited.
