@@ -1,0 +1,20 @@
+{
+  "name": "JBLM",
+  "version": "1.0.0",
+  "description": "JBLM Website Hello",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biniamsea2/JBLM.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/biniamsea2/JBLM/issues"
+  },
+  "homepage": "https://github.com/biniamsea2/JBLM#readme"
+}
