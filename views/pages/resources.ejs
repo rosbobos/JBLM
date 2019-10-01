@@ -9,13 +9,23 @@
 
 
 
-
   <main>
-    <h4>Resources Page</h4>
-    
+    <h4>Resources</h4>
+    <ul>
 
+      <% resource.forEach(partner => { %>
+      <li>
+        <img src="<%= partner.logo_png %>">
+        <h5>Title:<%= partner.title %></h5>
+        <p><%= partner.description %></p>
+        <a href="<%= resource_url %>"><%= partner.resource_url %></a>
+      </li>
+      <% }) %>
 
+    </ul>
   </main>
+
+
   <section>
 
   </section>
