@@ -5,6 +5,11 @@ const express = require('express');
 const pg = require('pg');
 const superagent = require('superagent');
 const methodOverride = require('method-override');
+const googleCalendarAPI = require('./googleapi');
+
+const GCA = new googleCalendarAPI();
+let EventList = GCA.getEventList();
+console.log('The current event list: \n', EventList);
 
 // ========== Environment Variable ========== //
 require('dotenv').config();
@@ -38,6 +43,8 @@ app.set('view engine', 'ejs');
 
 // render the Home page
 app.get('/', getHome);
+app.get('/upcoming/:count', getUpcoming);
+
 // render the Calendar page that shows a Google Calendar API
 app.get('/calendar', getCalendar);
 // render the Resource page
@@ -80,6 +87,10 @@ app.all('*', (req, res) => {
 
 function getHome(req, res) {
   res.render('pages/index');
+}
+
+function getUpcoming(req, res) {
+  res.send();
 }
 
 function getCalendar(req, res) {
