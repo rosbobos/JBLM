@@ -46,19 +46,35 @@ app.get('/calendar/:item_id', getCalendarItemDetail);
 
 // render the Admin page
 // app.get('/edit-mode/authority/admin', renderAdmin);
-app.get('/admin_k6XdnVeAYtKUda2s', getAdminView);
-app.get('/admin_k6XdnVeAYtKUda2s/calendar/new', getEventAdminList);
-app.get('/admin_k6XdnVeAYtKUda2s/calendar/new', getNewEventView);
-app.get('/admin_k6XdnVeAYtKUda2s/calendar/edit', getEditEventView);
-app.get('/admin_k6XdnVeAYtKUda2s/calendar/delete', getDeleteEventView);
+const adminRoute = process.env.ADMIN_ROUTE;
 
-//Routes Out
-app.post('/admin_k6XdnVeAYtKUda2s/calendar/new', postNewEvent);
-app.put('/admin_k6XdnVeAYtKUda2s/calendar/edit', updateEvent);
-app.delete('/admin_k6XdnVeAYtKUda2s/calendar/delete', deleteEvent);
+// Make sure we do not set up the routes if ADMIN_ROUTE is not defined.
+if (adminRoute) {
+  app.get(`/${adminRoute}`, getAdminView);
+  app.get(`/${adminRoute}/calendar`, getEventAdminList);
+  app.get(`/${adminRoute}/calendar/new`, getNewEventView);
+  app.get(`/${adminRoute}/calendar/edit`, getEditEventView);
+  app.get(`/${adminRoute}/calendar/delete`, getDeleteEventView);
+  app.post(`/${adminRoute}/calendar/new`, postNewEvent);
+  app.put(`/${adminRoute}/calendar/edit`, updateEvent);
+  app.delete(`/${adminRoute}/calendar/delete`, deleteEvent);
+
+  app.get(`/${adminRoute}/resources`, getResourceAdminList);
+  app.get(`/${adminRoute}/resources/new`, getNewResourceView);
+  app.get(`/${adminRoute}/resources/edit/:id`, getEditResourceView);
+  app.get(`/${adminRoute}/resources/delete/:id`, getDeleteResourceView);
+  app.post(`/${adminRoute}/resource/new`, postNewResource);
+  app.put(`/${adminRoute}/resource/edit/:id`, updateResource);
+  app.delete(`/${adminRoute}/resource/delete/:id`, deleteResource);
+} else {
+  console.log('no ADMIN_ROUTE .env value');
+}
 
 // ========== Catch All Other Routes ========== //
-app.get('*', (request, response) => response.status(404).render('pages/error'));
+app.all('*', (req, res) => {
+  res.status(404).send('This route does not exist.');
+  console.log(`Route for ${req.method} ${req.originalUrl} does not exist.`);
+});
 
 // ========== Home Page ========== //
 
@@ -99,15 +115,43 @@ function getDeleteEventView(req, res) {
 }
 
 function postNewEvent(req, res) {
-  res.redirect('admin_k6XdnVeAYtKUda2s');
+  res.redirect(`/${adminRoute}`);
 }
 
 function updateEvent(req, res) {
-  res.redirect('admin_k6XdnVeAYtKUda2s');
+  res.redirect(`/${adminRoute}`);
 }
 
 function deleteEvent(req, res) {
-  res.redirect('admin_k6XdnVeAYtKUda2s');
+  res.redirect(`/${adminRoute}`);
+}
+
+function getResourceAdminList(req, res) {
+  res.render('pages/resources/list');
+}
+
+function getNewResourceView(req, res) {
+  res.render('pages/resources/new-item');
+}
+
+function getEditResourceView(req, res) {
+  res.render('pages/resources/edit-item');
+}
+
+function getDeleteResourceView(req, res) {
+  res.render('pages/resources/delete-item');
+}
+
+function postNewResource(req, res) {
+  res.redirect(`/${adminRoute}`);
+}
+
+function updateResource(req, res) {
+  res.redirect(`/${adminRoute}`);
+}
+
+function deleteResource(req, res) {
+  res.redirect(`/${adminRoute}`);
 }
 
 // ========== Error Function ========== //
@@ -123,7 +167,7 @@ function handleError(err, response) {
       .render('pages/error', {
         header: 'Uh Oh something went wrong :(',
         //TODO: create constructor to display JSON err obj for client
-        error: JSON.stringify(err)
+        // error: JSON.stringify(err)
       });
   }
 }
