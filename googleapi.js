@@ -99,3 +99,5 @@ function googleCalendarAPI(){
     });
   }
 }
+
+module.exports = googleCalendarAPI();
