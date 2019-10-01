@@ -1,0 +1,95 @@
+
+
+
+/* nav bar in header */
+nav{
+    background: rgb(253, 103, 103);
+    height: 75px;
+
+    margin: 10px 50px 10px 50px;
+}
+
+/* tabs in header */
+.home{
+    margin: 15px;
+    float: right;
+    line-height: 50px;
+    color: white;
+}
+
+/* logo in header */
+#logo{
+    border: 2px solid white;
+    margin:15px;
+    line-height: 50px;
+    padding-left: 2.5px;
+    padding-right: 2.5px;
+    float: left;
+    color:white;
+}
+
+
+.container{
+    width:50em;
+    /* height:50em; */
+    
+}
+
+/* img{
+    width:5px;
+    /* height:auto; 
+} */
+
+
+footer{
+    background: rgb(253, 103, 103);
+    margin: 10px 50px 10px 50px;
+    height: 90px;
+
+}
+
+/* contact info in footer */
+#contact{
+    color: white;
+    float: right;
+    height: 25px;
+    margin-top:11px;
+    margin-right:5px;
+
+}
+
+/* logo in footer */
+#footlogo{
+    color:white;
+    border: 2px solid white;
+    /* float:left; */
+    margin-top:15px;
+    margin-left:10px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 50%;
+}
+
+/* home/calendar/resources in footer */
+.home2{
+    margin: 5px 5px 5px 10px;
+    float: left;
+    color: white;
+}
+
+/* calendar */
+iframe{
+    margin-left: 20%;
+}
+
+
+
+
+#top5{
+    margin: 10px 80px 90px 80px;
+    border:2px solid red;
+    /* display: inline; */
+    padding: 5px;
+}
