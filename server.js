@@ -48,16 +48,27 @@ app.get('/calendar/:item_id', getCalendarItemDetail);
 // app.get('/edit-mode/authority/admin', renderAdmin);
 const adminRoute = process.env.ADMIN_ROUTE;
 
-app.get(`/${adminRoute}`, getAdminView);
-app.get(`/${adminRoute}/calendar/new`, getEventAdminList);
-app.get(`/${adminRoute}/calendar/new`, getNewEventView);
-app.get(`/${adminRoute}/calendar/edit`, getEditEventView);
-app.get(`/${adminRoute}/calendar/delete`, getDeleteEventView);
+// Make sure we do not set up the routes if ADMIN_ROUTE is not defined.
+if (adminRoute) {
+  app.get(`/${adminRoute}`, getAdminView);
+  app.get(`/${adminRoute}/calendar`, getEventAdminList);
+  app.get(`/${adminRoute}/calendar/new`, getNewEventView);
+  app.get(`/${adminRoute}/calendar/edit`, getEditEventView);
+  app.get(`/${adminRoute}/calendar/delete`, getDeleteEventView);
+  app.post(`/${adminRoute}/calendar/new`, postNewEvent);
+  app.put(`/${adminRoute}/calendar/edit`, updateEvent);
+  app.delete(`/${adminRoute}/calendar/delete`, deleteEvent);
 
-//Routes Out
-app.post(`/${adminRoute}/calendar/new`, postNewEvent);
-app.put(`/${adminRoute}/calendar/edit`, updateEvent);
-app.delete(`/${adminRoute}/calendar/delete`, deleteEvent);
+  app.get(`/${adminRoute}/resources`, getResourceAdminList);
+  app.get(`/${adminRoute}/resources/new`, getNewResourceView);
+  app.get(`/${adminRoute}/resources/edit/:id`, getEditResourceView);
+  app.get(`/${adminRoute}/resources/delete/:id`, getDeleteResourceView);
+  app.post(`/${adminRoute}/resource/new`, postNewResource);
+  app.put(`/${adminRoute}/resource/edit/:id`, updateResource);
+  app.delete(`/${adminRoute}/resource/delete/:id`, deleteResource);
+} else {
+  console.log('no ADMIN_ROUTE .env value');
+}
 
 // ========== Catch All Other Routes ========== //
 app.all('*', (req, res) => {
@@ -112,6 +123,34 @@ function updateEvent(req, res) {
 }
 
 function deleteEvent(req, res) {
+  res.redirect(`/${adminRoute}`);
+}
+
+function getResourceAdminList(req, res) {
+  res.render('pages/resources/list');
+}
+
+function getNewResourceView(req, res) {
+  res.render('pages/resources/new-item');
+}
+
+function getEditResourceView(req, res) {
+  res.render('pages/resources/edit-item');
+}
+
+function getDeleteResourceView(req, res) {
+  res.render('pages/resources/delete-item');
+}
+
+function postNewResource(req, res) {
+  res.redirect(`/${adminRoute}`);
+}
+
+function updateResource(req, res) {
+  res.redirect(`/${adminRoute}`);
+}
+
+function deleteResource(req, res) {
   res.redirect(`/${adminRoute}`);
 }
 
