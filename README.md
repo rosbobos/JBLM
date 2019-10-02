@@ -1,13 +1,13 @@
 
-## VERSION 1.0.0
 
 # JBLM Unlimited Website
+## VERSION 1.0.0
 
 ## Names of the team members:
 Biniam Tesfamarian, Elle Young, Karina Chen, Jon Kimball
 
 **NECESSARY PACKAGES:**
-Required: express, pg, fs, superagent
+Required: express, pg, fs, superagent, methodOverride
 
 _**.env**_ 
 
@@ -18,10 +18,10 @@ DATABASE_URL: postgres://localhost:5432/jblm_unlimited_cf19
 **ADMIN_ROUTE: RESERVED FOR DEVELOPER PLEASE CONTACT**
 
 
-# Project Description:
+### Project Description:
 The JBLM Unlimited website will be used for service members to see a google calendar with events and links. There will be a Resource page that has all the contact information and links for JBLM's partners. An Admin page will also be built for admin users to add and edit information on the website. An admin route will be created and only the admin users who know the route url can access and make changes to the website.
 
-# MEMBER USER STORIES:
+### MEMBER USER STORIES:
 
 As a JBLM member, I want to come to the Home page of this website to see a preview of the 5 upcoming events shown on the Home page, so I can know what events are coming soon without having to go to the Calendar page.
 
@@ -33,7 +33,7 @@ As a JBLM member, I want to click on the events in the calendar to see more deta
 
 As a JBLM member, I want to see all the contact information of JBLM's partners on Resource page, so I can contact them if I need to.
 
-# ADMIN USER STORIES:
+### ADMIN USER STORIES:
 
 As an admin user, I want to have a calendar that goes into future dates , so I can put events on the calendar early in the time for coordination purposes.
 
@@ -47,7 +47,7 @@ As an admin user, I want to be able to add and change information about events a
 
 As an admin user, I want to have some sort of portal security so only the admin users can change events and resources information on this website.
 
-# Project Scope:
+### Project Scope:
 
 _MVP -_
 
