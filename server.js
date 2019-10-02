@@ -227,6 +227,7 @@ function handleError(err, response) {
         header: 'Uh Oh something went wrong :(',
         //TODO: create constructor to display JSON err obj for client
         error: JSON.stringify(err)
+
       });
   }
 }
