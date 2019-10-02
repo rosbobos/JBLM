@@ -1,15 +1,17 @@
 'use strict';
 
 // ========== Dependencies ========== //
+const fs = require('fs');
 const express = require('express');
 const pg = require('pg');
 const superagent = require('superagent');
 const methodOverride = require('method-override');
-const googleCalendarAPI = require('./googleapi');
 
+const googleCalendarAPI = require('./googleapi');
 const GCA = new googleCalendarAPI();
-let EventList = GCA.getEventList();
-console.log('The current event list: \n', EventList);
+
+// TODO: fix to get event list properly
+let eventList = GCA.getEventList();
 
 // ========== Environment Variable ========== //
 require('dotenv').config();
@@ -52,6 +54,8 @@ app.get('/resources', getResources);
 app.get('/calendar/:item_id', getCalendarItemDetail);
 
 app.get('/email', getEmailLink);
+
+app.get('/pdf', testPDF);
 
 // render the Admin page
 // app.get('/edit-mode/authority/admin', renderAdmin);
@@ -188,6 +192,12 @@ function updateResource(req, res) {
 
 function deleteResource(req, res) {
   res.redirect(`/${adminRoute}`);
+}
+
+function testPDF(req, res) {
+  var data = fs.readFileSync('./data/test.pdf');
+  res.contentType('application/pdf');
+  res.send(data);
 }
 
 // ========== Error Function ========== //
