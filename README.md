@@ -1,10 +1,13 @@
 
 
 # JBLM Unlimited Website
-## VERSION 1.0.0
+ VERSION 1.0.0
 
-## Names of the team members:
+# Names of the team members:
 Biniam Tesfamarian, Elle Young, Karina Chen, Jon Kimball
+
+
+### 
 
 **NECESSARY PACKAGES:**
 Required: express, pg, fs, superagent, methodOverride
