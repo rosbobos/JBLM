@@ -51,6 +51,8 @@ app.get('/calendar', getCalendar);
 app.get('/resources', getResources);
 app.get('/calendar/:item_id', getCalendarItemDetail);
 
+app.get('/email', getEmailLink);
+
 // render the Admin page
 // app.get('/edit-mode/authority/admin', renderAdmin);
 const adminRoute = process.env.ADMIN_ROUTE;
@@ -65,7 +67,6 @@ if (adminRoute) {
   app.post(`/${adminRoute}/calendar/new`, postNewEvent);
   app.put(`/${adminRoute}/calendar/edit`, updateEvent);
   app.delete(`/${adminRoute}/calendar/delete`, deleteEvent);
-
   app.get(`/${adminRoute}/resource`, getResourceAdminList);
   app.get(`/${adminRoute}/resource/new`, getNewResourceView);
   app.get(`/${adminRoute}/resource/edit/:id`, getEditResourceView);
@@ -109,6 +110,10 @@ function getResources(req, res) {
       res.render('pages/resources', { resource: sqlResults.rows });
     })
     .catch(err => handleError(err, res));
+}
+
+function getEmailLink(req, res) {
+  res.redirect(`${process.env.EMAIL}`);
 }
 
 function getCalendarItemDetail(req, res) {
