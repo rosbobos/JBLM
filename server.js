@@ -90,6 +90,8 @@ function getHome(req, res) {
 }
 
 function getUpcoming(req, res) {
+  let EventList = GCA.getEventList();
+  console.log('The current event list: \n', EventList);
   res.send();
 }
 
@@ -98,7 +100,15 @@ function getCalendar(req, res) {
 }
 
 function getResources(req, res) {
-  res.render('pages/resources');
+  const sql = 'SELECT id, title, description, resource_url, logo_png FROM resource ORDER BY title DESC;';
+
+  client
+    .query(sql)
+    .then(sqlResults => {
+      console.log('sql results', sqlResults.rows);
+      res.render('pages/resources', { resource: sqlResults.rows });
+    })
+    .catch(err => handleError(err, res));
 }
 
 function getCalendarItemDetail(req, res) {
