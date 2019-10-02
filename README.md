@@ -12,7 +12,7 @@ Biniam Tesfamarian, Elle Young, Karina Chen, Jon Kimball
 **NECESSARY PACKAGES:**
 Required: express, pg, fs, superagent, methodOverride
 
-_**.env**_ 
+_**.env file setup**_ 
 
 PORT:3000 || 3001
 
