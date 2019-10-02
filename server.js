@@ -48,7 +48,7 @@ app.get('/upcoming/:count', getUpcoming);
 // render the Calendar page that shows a Google Calendar API
 app.get('/calendar', getCalendar);
 // render the Resource page
-app.get('/resource', getResources);
+app.get('/resources', getResources);
 app.get('/calendar/:item_id', getCalendarItemDetail);
 
 // render the Admin page
@@ -106,7 +106,7 @@ function getResources(req, res) {
     .query(sql)
     .then(sqlResults => {
       console.log('sql results', sqlResults.rows);
-      res.render('pages/resource', { resource: sqlResults.rows });
+      res.render('pages/resources', { resource: sqlResults.rows });
     })
     .catch(err => handleError(err, res));
 }
