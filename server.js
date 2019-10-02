@@ -125,7 +125,18 @@ function getCalendarItemDetail(req, res) {
 }
 
 function getAdminView(req, res) {
-  res.render('pages/admin');
+  const sql = 'SELECT id, title, description, resource_url, logo_png FROM resource ORDER BY title DESC;';
+
+  client
+    .query(sql)
+    .then(sqlResults => {
+      console.log('sql results', sqlResults.rows);
+      res.render('pages/admin', {
+        adminRoute: adminRoute,
+        resource: sqlResults.rows
+      });
+    })
+    .catch(err => handleError(err, res));
 }
 
 function getEventAdminList(req, res) {
@@ -164,6 +175,7 @@ function getResourceAdminList(req, res) {
     .then(sqlResults => {
       console.log('sql results', sqlResults.rows);
       res.render('pages/resource/list', {
+        adminRoute: adminRoute,
         resource: sqlResults.rows
       });
     })
