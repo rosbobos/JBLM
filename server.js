@@ -1,15 +1,17 @@
 'use strict';
 
 // ========== Dependencies ========== //
+const fs = require('fs');
 const express = require('express');
 const pg = require('pg');
 const superagent = require('superagent');
 const methodOverride = require('method-override');
-const googleCalendarAPI = require('./googleapi');
 
+const googleCalendarAPI = require('./googleapi');
 const GCA = new googleCalendarAPI();
-let EventList = GCA.getEventList();
-console.log('The current event list: \n', EventList);
+
+// TODO: fix to get event list properly
+let eventList = GCA.getEventList();
 
 // ========== Environment Variable ========== //
 require('dotenv').config();
@@ -51,6 +53,10 @@ app.get('/calendar', getCalendar);
 app.get('/resources', getResources);
 app.get('/calendar/:item_id', getCalendarItemDetail);
 
+app.get('/email', getEmailLink);
+
+app.get('/pdf', testPDF);
+
 // render the Admin page
 // app.get('/edit-mode/authority/admin', renderAdmin);
 const adminRoute = process.env.ADMIN_ROUTE;
@@ -65,7 +71,6 @@ if (adminRoute) {
   app.post(`/${adminRoute}/calendar/new`, postNewEvent);
   app.put(`/${adminRoute}/calendar/edit`, updateEvent);
   app.delete(`/${adminRoute}/calendar/delete`, deleteEvent);
-
   app.get(`/${adminRoute}/resource`, getResourceAdminList);
   app.get(`/${adminRoute}/resource/new`, getNewResourceView);
   app.get(`/${adminRoute}/resource/edit/:id`, getEditResourceView);
@@ -109,6 +114,10 @@ function getResources(req, res) {
       res.render('pages/resources', { resource: sqlResults.rows });
     })
     .catch(err => handleError(err, res));
+}
+
+function getEmailLink(req, res) {
+  res.redirect(`${process.env.EMAIL}`);
 }
 
 function getCalendarItemDetail(req, res) {
@@ -183,6 +192,12 @@ function updateResource(req, res) {
 
 function deleteResource(req, res) {
   res.redirect(`/${adminRoute}`);
+}
+
+function testPDF(req, res) {
+  var data = fs.readFileSync('./data/test.pdf');
+  res.contentType('application/pdf');
+  res.send(data);
 }
 
 // ========== Error Function ========== //

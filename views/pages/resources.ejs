@@ -20,6 +20,7 @@
         <h5>Title:<%= partner.title %></h5>
         <p><%= partner.description %></p>
         <a href="<%= partner.resource_url %>"><%= partner.resource_url %></a>
+        <a href="/pdf">PDF</a>
       </li>
       <% }) %>
 
@@ -32,6 +33,12 @@
 
 
   <%- include('../partials/footer') %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    $('.resources_link').hide();
+  </script>
 
 </body>
 
