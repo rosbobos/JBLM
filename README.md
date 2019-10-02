@@ -69,3 +69,9 @@ Inside the view detail page of each event, be able to attach PDF files or fliers
 
 Admin Page:
 Create a basic username/password login security system for admin users. Let the admin users to update/change events on Calendar page and on Resource page.
+
+
+
+Special thanks to all the people of the internet that helped! Here is our resource list:
+
+https://docs.google.com/document/d/1Kf0oJOv7DQVtcTo5k2G7Mlmh3PCyHBKwK9B86Hl5K-s/edit?usp=sharing
