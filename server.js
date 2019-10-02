@@ -224,8 +224,7 @@ function handleError(err, response) {
       .status(500)
       .render('pages/error', {
         header: 'Uh Oh something went wrong :(',
-        //TODO: create constructor to display JSON err obj for client
-        // error: JSON.stringify(err)
+        error: err.toString()
       });
   }
 }
