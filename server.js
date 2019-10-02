@@ -239,7 +239,7 @@ function deleteResource(req, res) {
     .query(sql, values)
     .then(sqlResults => {
       console.log('deleteResource() query.then');
-      res.redirect(`/${adminRoute}`);
+      res.set({ type: 'GET' }).redirect(`/${adminRoute}/resource`);
     })
     .catch(err => handleError(err, res));
   //res.redirect(`/${adminRoute}`);
