@@ -7,7 +7,7 @@
   <%- include('../partials/header') %>
   <h2>Admin</h2>
   <main>
-      <form action='/adminRoute/resource/new' method='post'>
+      <form action="<%= `${adminRoute}/resource/new` %>" method='post'>
         <!-- TODO: MAKE DESCRIPTION BOX BIGGER; HAVE FORM SUBMISSION SEND TO DATABASE AND THEN RENDER TO RESOURCES.EJS -->
         <fieldset>
           <label for="title">
@@ -22,16 +22,6 @@
                 <span>Resource URL</span>
                 <input type="url" name="search" value="" required>
           </label>
-
-<!-- DROP TABLE IF EXISTS resource;
-CREATE TABLE resource (
-  id SERIAL PRIMARY KEY,
-  title varchar(255),
-  description text,
-  resource_url varchar(255),
-  logo_png bytea
-); -->
-
         </fieldset>
         <button type="submit">Add this resource</button>
       </form>

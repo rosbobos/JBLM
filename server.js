@@ -195,6 +195,7 @@ function getDeleteResourceView(req, res) {
 }
 
 function postNewResource(req, res) {
+  console.log(req);
   res.redirect(`/${adminRoute}`);
 }
 
@@ -225,7 +226,7 @@ function handleError(err, response) {
       .render('pages/error', {
         header: 'Uh Oh something went wrong :(',
         //TODO: create constructor to display JSON err obj for client
-        // error: JSON.stringify(err)
+        error: JSON.stringify(err)
       });
   }
 }
