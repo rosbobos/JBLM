@@ -22,24 +22,17 @@ nav{
     border: 2px solid white;
     margin:15px;
     line-height: 50px;
+    border-radius:10px;
     padding-left: 2.5px;
     padding-right: 2.5px;
     float: left;
     color:white;
 }
 
-
 .container{
-    width:50em;
-    /* height:50em; */
-    
+    width:95%;
+
 }
-
-/* img{
-    width:5px;
-    /* height:auto; 
-} */
-
 
 footer{
     background: rgb(253, 103, 103);
@@ -88,8 +81,55 @@ iframe{
 
 
 #top5{
-    margin: 10px 80px 90px 80px;
+    margin: 10px 50px 10px 50px;
     border:2px solid red;
     /* display: inline; */
     padding: 5px;
+}
+
+
+ol{
+    margin: 10px 50px 10px 50px;
+    /* display: inline; */
+    width: 100px;
+}
+
+/* #vert{
+    border-left: 6px solid green;
+    height: 500px;
+    margin: 10px 0px 10px 60em;
+
+} */
+
+#icons{
+    /* float:right; */
+    /* margin-bottom: 25em; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right:50px;
+
+}
+
+/* a{
+    margin:5px;
+} */
+
+#fbicon{
+    width:50px;
+    height:50px;
+    margin-right: 5px;
+    border-radius: 8px;
+}
+
+#linkicon{
+    width:70px;
+    border-radius: 35px;
+    height:70px;
+}
+
+#emailicon{
+    width:65px;
+    height:65px;
+
 }
