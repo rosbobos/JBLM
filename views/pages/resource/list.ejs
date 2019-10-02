@@ -20,12 +20,19 @@
         <h5>Title:<%= partner.title %></h5>
         <p><%= partner.description %></p>
         <a href="<%= partner.resource_url %>"><%= partner.resource_url %></a>
+
+        <!-- Edit and Delete links -->
+        <!-- /${adminRoute}/resource/edit/:id -->
+        <a href="/<%= `${adminRoute}/resource/edit/${partner.id}` %>">Edit</a>
+        <!-- this should actually be a PUT with _method of delete after a confirmation prompt -->
+        <a href="/<%= `${adminRoute}/resource/delete/${partner.id}` %>">Delete</a>
+
       </li>
       <% }) %>
 
     </ul>
+    <a href="/<%= adminRoute %>">Admin Page</a>
   </main>
-
   <section>
 
   </section>
