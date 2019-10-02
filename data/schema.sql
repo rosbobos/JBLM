@@ -1,6 +1,6 @@
--- DROP DATABASE IF EXISTS jblm_unlimited_cf19;
--- CREATE DATABASE jblm_unlimited_cf19;
--- \c jblm_unlimited_cf19;
+DROP DATABASE IF EXISTS jblm_unlimited_cf19;
+CREATE DATABASE jblm_unlimited_cf19;
+\c jblm_unlimited_cf19;
 
 
 DROP TABLE IF EXISTS event;
