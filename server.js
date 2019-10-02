@@ -48,7 +48,7 @@ app.get('/upcoming/:count', getUpcoming);
 // render the Calendar page that shows a Google Calendar API
 app.get('/calendar', getCalendar);
 // render the Resource page
-app.get('/resources', getResources);
+app.get('/resource', getResources);
 app.get('/calendar/:item_id', getCalendarItemDetail);
 
 // render the Admin page
@@ -66,10 +66,10 @@ if (adminRoute) {
   app.put(`/${adminRoute}/calendar/edit`, updateEvent);
   app.delete(`/${adminRoute}/calendar/delete`, deleteEvent);
 
-  app.get(`/${adminRoute}/resources`, getResourceAdminList);
-  app.get(`/${adminRoute}/resources/new`, getNewResourceView);
-  app.get(`/${adminRoute}/resources/edit/:id`, getEditResourceView);
-  app.get(`/${adminRoute}/resources/delete/:id`, getDeleteResourceView);
+  app.get(`/${adminRoute}/resource`, getResourceAdminList);
+  app.get(`/${adminRoute}/resource/new`, getNewResourceView);
+  app.get(`/${adminRoute}/resource/edit/:id`, getEditResourceView);
+  app.get(`/${adminRoute}/resource/delete/:id`, getDeleteResourceView);
   app.post(`/${adminRoute}/resource/new`, postNewResource);
   app.put(`/${adminRoute}/resource/edit/:id`, updateResource);
   app.delete(`/${adminRoute}/resource/delete/:id`, deleteResource);
@@ -83,7 +83,7 @@ app.all('*', (req, res) => {
   console.log(`Route for ${req.method} ${req.originalUrl} does not exist.`);
 });
 
-// ========== Home Page ========== //
+// ========== Route Handlers ========== //
 
 function getHome(req, res) {
   res.render('pages/index');
@@ -92,7 +92,7 @@ function getHome(req, res) {
 function getUpcoming(req, res) {
   let EventList = GCA.getEventList();
   console.log('The current event list: \n', EventList);
-  res.send();
+  res.send(EventList);
 }
 
 function getCalendar(req, res) {
@@ -106,7 +106,7 @@ function getResources(req, res) {
     .query(sql)
     .then(sqlResults => {
       console.log('sql results', sqlResults.rows);
-      res.render('pages/resources', { resource: sqlResults.rows });
+      res.render('pages/resource', { resource: sqlResults.rows });
     })
     .catch(err => handleError(err, res));
 }
@@ -148,19 +148,29 @@ function deleteEvent(req, res) {
 }
 
 function getResourceAdminList(req, res) {
-  res.render('pages/resources/list');
+  const sql = 'SELECT id, title, description, resource_url, logo_png FROM resource ORDER BY title DESC;';
+
+  client
+    .query(sql)
+    .then(sqlResults => {
+      console.log('sql results', sqlResults.rows);
+      res.render('pages/resource/list', {
+        resource: sqlResults.rows
+      });
+    })
+    .catch(err => handleError(err, res));
 }
 
 function getNewResourceView(req, res) {
-  res.render('pages/resources/new-item');
+  res.render('pages/resource/new-item');
 }
 
 function getEditResourceView(req, res) {
-  res.render('pages/resources/edit-item');
+  res.render('pages/resource/edit-item');
 }
 
 function getDeleteResourceView(req, res) {
-  res.render('pages/resources/delete-item');
+  res.render('pages/resource/delete-item');
 }
 
 function postNewResource(req, res) {
