@@ -1,3 +1,5 @@
+/* eslint-disable no-irregular-whitespace */
+/* eslint-disable no-undef */
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
@@ -92,19 +94,31 @@ function listEvents(auth) {
     const events = res.data.items;
     if (events.length) {
       console.log('Upcoming 5 events:');
-      eventList = [];
+      let eventList = [];
       events.map((event, i) => {
         const eventStartDate = event.start.dateTime.slice(0,10);
         const eventStartTime = event.start.dateTime.slice(11,16);
         const eventEndTime = event.end.dateTime.slice(11, 16);
-        const date = eventStartDate || '';
+        const date = eventStartDate || 'no date available';
         const start = eventStartTime || event.start.date;
-        const end = eventEndTime || '';
-        const totalEventTime = `${date}-${start}-${end}: ${event.summary}`;
+        const end = eventEndTime || 'no end time available';
+        const eventTitle = event.summary || 'no title available';
+        console.log(`${date}-${start}-${end}: ${eventTitle}`);
+
+        const totalEventTime = new EventTimes(date, start, end, eventTitle);
+
         eventList.push(totalEventTime);
       });
     } else {
       console.log('No upcoming events found.');
+    }
+
+    // ========== Event Constructor Object ========== //
+    function EventTimes(date, start, end, eventTitle) {
+      this.date = date;
+      this.start = start;
+      this.end = end;
+      this.eventTitle = eventTitle;
     }
   });
 }
