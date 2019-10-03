@@ -119,7 +119,7 @@ iframe{
   #slideshow > div {
       width: 100%;
       /* height: 100%; */
-          height: 40em; 
+          /* height: 20em;  */
 
     position: absolute;
     top: 0px;
