@@ -4,8 +4,13 @@
 <%- include('../partials/head') %>
 
 <body>
-  <%- include('../partials/header') %>
-  <h2>Admin</h2>
+    <section id="header">
+        <h1>JBLM Unlimited</h1>
+        <a id="home2" href="/">Home</a>
+        <a class="calendar3" href="/calendar">Calendar</a>
+        <a id="resources5" href="/resources">Resources</a>
+      </section>
+  <h2 id="admin">Administration Page </h2>
   <main>
     <form action="<%= `${adminRoute}/resource/new` %>" method="post">
       <!-- TODO: MAKE DESCRIPTION BOX BIGGER; HAVE FORM SUBMISSION SEND TO DATABASE AND THEN RENDER TO RESOURCES.EJS -->
@@ -33,7 +38,9 @@
 
 
   </main>
-  <%- include('../partials/footer') %>
+  
+    <div id="copyright"> &copy; 2019 JBLM Unlimited</div>
+    
 </body>
 
 </html>
