@@ -25,10 +25,14 @@
         <!-- /${adminRoute}/resource/edit/:id -->
         <a href="<%= `/${adminRoute}/resource/edit/${partner.id}` %>">Edit</a>
         <!-- this should actually be a PUT with _method of delete after a confirmation prompt -->
-        <button
-          onclick="$.ajax({url: '<%= `/${adminRoute}/resource/delete/${partner.id}` %>', type: 'DELETE', success: function(result) {}});">
-          Delete
-        </button>
+        <form action="<%= `/${adminRoute}/resource/delete/${partner.id}` %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit">Delete</button>
+        </form>
+        <!-- <button -->
+        <!-- onclick="$.ajax({url: '<%= `/${adminRoute}/resource/delete/${partner.id}` %>', type: 'DELETE', success: function(result) {}});"> -->
+        <!-- Delete -->
+        <!-- </button> -->
       </li>
       <% }) %>
 
