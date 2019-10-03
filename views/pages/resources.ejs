@@ -18,9 +18,9 @@
       <% resource.forEach(partner => { %>
       <li>
         <h5 class="rr rt"><%= partner.title %></h5>
-        <p class="rr"><%= partner.description %></p>
+        <p class="rr dt"><%= partner.description %></p>
         <a class="rr" href="<%= partner.resource_url %>"><%= partner.resource_url %></a>
-        <a href="/pdf">PDF</a>
+        <a id="pdf" href="/pdf">PDF</a>
       </li>
       <% }) %>
 

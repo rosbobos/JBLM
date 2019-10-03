@@ -229,10 +229,21 @@ h4{
 }
 .rr{
     margin-left: 5em;
+    /* margin-right: 5em; */
 }
 
 .rt{
     margin-top:5em;
+    /* margin-right: 5em; */
+
+}
+
+.dt{
+    margin-right: 5em;
+}
+
+#pdf{
+    margin-left: 1em;
 }
 
 #copyright3{
