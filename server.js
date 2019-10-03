@@ -104,16 +104,16 @@ function getUpcoming(req, res) {
 function getNews(req, res) {
   let newsURL = `https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=${process.env.NYTIMES_API_KEY}`;
   superagent.get(newsURL)
-    .then(newsResults => {
-      const newsParse = JSON.parse(newsResults.text);
-      let newsArray = [];
-      if (newsParse.results.length > 5) {
-        for (let i = 0; i < 5; i++) {
-          const title = newsParse.results[i].title;
-          const updated = newsParse.results[i].updated;
-          const abstract = newsParse.results[i].abstract;
-          const url = newsParse.results[i].url;
-          const newNews = new NYNews(title, updated, abstract, url);
+    .then(newsResults => {
+      const newsParse = JSON.parse(newsResults.text);
+      let newsArray = [];
+      if (newsParse.results.length > 5) {
+        for (let i = 0; i < 5; i++) {
+          const title = newsParse.results[i].title;
+          const updated = newsParse.results[i].updated;
+          const abstract = newsParse.results[i].abstract;
+          const url = newsParse.results[i].url;
+          const newNews = new NYNews(title, updated, abstract, url);
           newsArray.push(newNews);
         }
       } else {
