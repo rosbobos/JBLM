@@ -6,7 +6,8 @@
 # Names of the team members:
 Biniam Tesfamarian, Elle Young, Karina Chen, Jon Kimball
 
-
+<!-- TODO: Clearly defined API endpoints with sample responses
+Clearly defined database schemas -->
 ### 
 
 **NECESSARY PACKAGES:**
