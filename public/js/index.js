@@ -38,7 +38,7 @@ function loadNews() {
       let newsUpdated = $('<p></p>');
       newsUpdated.text(news.updated);
       let newsAbstract = $('<p></p>');
-      newsAbstract.text(news.abstract);
+      newsAbstract.text(news.summary);
       let newsLink = news.url;
       let newsURL = $( `<a href="${newsLink}">See more about this news</a>`)
       section.append(newsTitle);
