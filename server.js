@@ -24,8 +24,10 @@ const PORT = process.env.PORT || 3001;
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride((request, response) => {
+  console.log('methodOverride Callback');
   if (request.body && typeof request.body === 'object' && '_method' in request.body) {
     let method = request.body._method;
+    console.log(method);
     delete request.body._method;
     return method;
   }
@@ -44,7 +46,7 @@ app.set('view engine', 'ejs');
 // render the Home page
 app.get('/', getHome);
 app.get('/upcoming/:count', getUpcoming);
-app.get('/nytimes/news', getNews);
+app.get('/nytimes/news', getNews);
 // render the Calendar page that shows a Google Calendar API
 app.get('/calendar', getCalendar);
 // render the Resource page
@@ -161,7 +163,7 @@ function getAdminView(req, res) {
   client
     .query(sql)
     .then(sqlResults => {
-      console.log('sql results', sqlResults.rows);
+      // console.log('sql results', sqlResults.rows);
       res.render('pages/admin', {
         adminRoute: adminRoute,
         resource: sqlResults.rows
@@ -204,7 +206,7 @@ function getResourceAdminList(req, res) {
   client
     .query(sql)
     .then(sqlResults => {
-      console.log('sql results', sqlResults.rows);
+      // console.log('sql results', sqlResults.rows);
       res.render('pages/resource/list', {
         adminRoute: adminRoute,
         resource: sqlResults.rows
@@ -245,14 +247,12 @@ function postNewResource(req, res) {
   } = req.body;
   let values = [title, description, resource_url];
 
-  console.log(values);
-
   let sql = 'INSERT INTO resource (title, description, resource_url) VALUES($1, $2, $3);';
   client
     .query(sql, values)
     .then(sqlResults => {
       // res.redirect(`/${adminRoute}`);
-      getAdminView(req, res);
+      getResourceAdminList(req, res);
     })
     .catch(err => handleError(err, res));
 }
@@ -271,9 +271,9 @@ function deleteResource(req, res) {
       console.log('deleteResource() success');
 
       // TODO: should go to getAdminView(req, res); make sure this has the desired result!
-      getResourceAdminList(req, res);
+      // getResourceAdminList(req, res);
 
-      // res.redirect(303, `/${adminRoute}`);
+      res.redirect(303, `/${adminRoute}/resource`);
     })
     .catch(err => handleError(err, res));
   //res.redirect(`/${adminRoute}`);
@@ -285,12 +285,12 @@ function testPDF(req, res) {
   res.send(data);
 }
 
-// ========== News Constructor Object ========== //
-function NYNews(title, updated, abstract, url) {
-  this.title = title;
-  this.updated = updated;
-  this.summary = abstract;
-  this.url = url;
+// ========== News Constructor Object ========== //
+function NYNews(title, updated, abstract, url) {
+  this.title = title;
+  this.updated = updated;
+  this.summary = abstract;
+  this.url = url;
 }
 
 // ========== Error Function ========== //

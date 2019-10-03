@@ -4,17 +4,17 @@
 <%- include('../partials/head') %>
 
 <body>
-    <section id="header">
-        <h1>JBLM Unlimited</h1>
-        <a id="home2" href="/">Home</a>
-        <a class="calendar3" href="/calendar">Calendar</a>
-        <a id="resources5" href="/resources">Resources</a>
-      </section>
+  <section id="header">
+    <h1>JBLM Unlimited</h1>
+    <a id="home2" href="/">Home</a>
+    <a class="calendar3" href="/calendar">Calendar</a>
+    <a id="resources5" href="/resources">Resources</a>
+  </section>
 
 
   <h2 id="admin">Administration Page </h2>
   <main>
-    <form action="<%= `${adminRoute}/resource/new` %>" method="post">
+    <form action="<%= `/${adminRoute}/resource/new` %>" method="post">
       <!-- TODO: MAKE DESCRIPTION BOX BIGGER; HAVE FORM SUBMISSION SEND TO DATABASE AND THEN RENDER TO RESOURCES.EJS -->
       <!-- Check for demo code seattle-301d51/class-13/demo/views/pages/add-view.ejs 
         - Also check class-11/demos/forms/public/index.html for a better way to do labels.
@@ -40,8 +40,10 @@
 
 
   </main>
+
   
   <%- include('../partials/footer') %>
+
 
 </body>
 
