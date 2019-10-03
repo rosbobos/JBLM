@@ -95,15 +95,14 @@ iframe{
 
 #slideshow {
     /* z-index: -1; */
-    margin-bottom:5em;
+    /* margin-bottom:5em; */
     /* margin-left: -.61em; */
     /* margin: 80px auto; */
     
     
 /*     
     position: relative;
-    width: auto;
-    height: 40em; */
+    width: auto;*/
     
     
     /* padding: 10px; */
@@ -118,12 +117,14 @@ iframe{
   
   #slideshow > div {
       width: 100%;
-      height: 100%;
+      /* height: 100%; */
+          height: 40em; 
+
     position: absolute;
     top: 0px;
     left: 0px;
     right: 0px;
-    bottom: 10px;
+    /* bottom: 10px; */
   }
 
     
