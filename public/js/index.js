@@ -23,4 +23,26 @@ function loadData() {
   });
 }
 
+function loadNews() {
+  $.get('/nytimes/news', newsArray => {
+    const section = $('#news');
+    newsArray.forEach(news => {
+      console.log('THIS IS NEWS ARRAY =====:', news);
+      let newsTitle = $('<h5></h5>');
+      newsTitle.text(news.title);
+      let newsUpdated = $('<p></p>');
+      newsUpdated.text(news.updated);
+      let newsAbstract = $('<p></p>');
+      newsAbstract.text(news.abstract);
+      let newsLink = news.url;
+      let newsURL = $( `<a href="${newsLink}">See more about this news</a>`)
+      section.append(newsTitle);
+      section.append(newsUpdated);
+      section.append(newsAbstract);
+      section.append(newsURL);
+    })
+  })
+}
+
 $().ready(loadData);
+$().ready(loadNews);
