@@ -15,10 +15,15 @@ setInterval(function() {
 function loadData() {
   $.get('/upcoming/5', calendarItems => {
     const section = $('#upcoming');
-    calendarItems.forEach(item => {
-      let el = $('<p></p>');
-      el.text(item);
-      section.append(el);
+    calendarItems.forEach(event => {
+      let pEl = $('<p class="upcoming-item"></p>');
+      let dateEl = $('<span class="upcoming-date"></span>');
+      let titleEl = $('<span class="upcoming-title"></span>');
+      dateEl.text(event.date);
+      titleEl.text(event.eventTitle);
+      pEl.append(dateEl);
+      pEl.append(titleEl);
+      section.append(pEl);
     });
   });
 }

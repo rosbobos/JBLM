@@ -1,5 +1,9 @@
-/* eslint-disable no-irregular-whitespace */
-/* eslint-disable no-undef */
+/**
+ * Code in this module is taken largely from the Google API
+ * documentation at https://developers.google.com/calendar/quickstart/nodejs
+ * TODO: This should be rewritten once oAuth is properly understood!
+ */
+
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
@@ -94,7 +98,7 @@ function listEvents(auth) {
     const events = res.data.items;
     if (events.length) {
       console.log('Upcoming 5 events:');
-      let eventList = [];
+      eventList = [];
       events.map((event, i) => {
         const eventStartDate = event.start.dateTime.slice(0,10);
         const eventStartTime = event.start.dateTime.slice(11,16);
@@ -105,10 +109,10 @@ function listEvents(auth) {
         const eventTitle = event.summary || 'no title available';
         console.log(`${date}-${start}-${end}: ${eventTitle}`);
 
-        const totalEventTime = new EventTimes(date, start, end, eventTitle);
+        const totalEventTime = new EventTimes(date, start, end, eventTitle);
 
         eventList.push(totalEventTime);
-      });
+      } );
     } else {
       console.log('No upcoming events found.');
     }
@@ -120,6 +124,7 @@ function listEvents(auth) {
       this.end = end;
       this.eventTitle = eventTitle;
     }
+
   });
 }
 

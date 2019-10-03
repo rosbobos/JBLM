@@ -1,4 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
 'use strict';
 
 // ========== Dependencies ========== //
@@ -12,7 +11,7 @@ const googleCalendarAPI = require('./googleapi');
 const GCA = new googleCalendarAPI();
 
 // TODO: fix to get event list properly
-let eventList = GCA.getEventList();
+let eventListCache = GCA.getEventList();
 
 // ========== Environment Variable ========== //
 require('dotenv').config();
@@ -95,14 +94,15 @@ function getHome(req, res) {
   res.render('pages/index');
 }
 
+// TODO: eventList cache needs to be better managed!
 function getUpcoming(req, res) {
-  let EventList = GCA.getEventList();
-  console.log('The current event list: \n', EventList);
-  res.send(EventList);
+  let eventList = GCA.getEventList();
+  console.log('The current event list: \n', eventList);
+  res.send(eventList);
 }
 
-function getNews(req, res) {
-  let newsURL = `https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=${process.env.NYTIMES_API_KEY}`;
+function getNews(req, res) {
+  let newsURL = `https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=${process.env.NYTIMES_API_KEY}`;
   superagent.get(newsURL)
     .then(newsResults => {
       const newsParse = JSON.parse(newsResults.text);
@@ -116,20 +116,19 @@ function getNews(req, res) {
           const newNews = new NYNews(title, updated, abstract, url);
           newsArray.push(newNews);
         }
-      }
-      else {
-        for (let i = 0; i < newsParse.results.length; i++) {
-          const title = newsParse.results[i].title;
-          const updated = newsParse.results[i].updated;
-          const abstract = newsParse.results[i].abstract;
-          const url = newsParse.results[i].url;
-          const newNews = new NYNews(title, updated, abstract, url);
+      } else {
+        for (let i = 0; i < newsParse.results.length; i++) {
+          const title = newsParse.results[i].title;
+          const updated = newsParse.results[i].updated;
+          const abstract = newsParse.results[i].abstract;
+          const url = newsParse.results[i].url;
+          const newNews = new NYNews(title, updated, abstract, url);
           newsArray.push(newNews);
         }
       }
       res.send(newsArray);
     })
-    .catch(err => handleError(err, res));
+    .catch(err => handleError(err, res));
 }
 
 function getCalendar(req, res) {
@@ -271,7 +270,7 @@ function deleteResource(req, res) {
     .then(sqlResults => {
       console.log('deleteResource() success');
 
-      // TODO: should go to getAdminView(req, res);
+      // TODO: should go to getAdminView(req, res); make sure this has the desired result!
       getResourceAdminList(req, res);
 
       // res.redirect(303, `/${adminRoute}`);
