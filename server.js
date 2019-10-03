@@ -106,7 +106,6 @@ function getNews(req, res) {
   superagent.get(newsURL)
     .then(newsResults => {
       const newsParse = JSON.parse(newsResults.text);
-      console.log('PARSE ----------:', newsParse);
       let newsArray = [];
       if (newsParse.results.length > 5) {
         for (let i = 0; i < 5; i++) {
@@ -127,9 +126,8 @@ function getNews(req, res) {
           const newNews = new NYNews(title, updated, abstract, url);
           newsArray.push(newNews);
         }
-        res.render('pages/calendar');
       }
-      console.log(newsArray);
+      res.send(newsArray);
     })
     .catch(err => handleError(err, res));
 }
