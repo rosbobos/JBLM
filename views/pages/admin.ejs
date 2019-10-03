@@ -7,24 +7,29 @@
   <%- include('../partials/header') %>
   <h2>Admin</h2>
   <main>
-      <form action="<%= `${adminRoute}/resource/new` %>" method='post'>
-        <!-- TODO: MAKE DESCRIPTION BOX BIGGER; HAVE FORM SUBMISSION SEND TO DATABASE AND THEN RENDER TO RESOURCES.EJS -->
-        <fieldset>
-          <label for="title">
-            <span>Resource Title</span>
-            <input type="text" value="" required>
-          </label>
-          <label for="description">
-            <span>Description</span>
-            <input type="text" name="search" value="" style= "height:30px;" required>
-          </label>
-          <label for="resource_url">
-                <span>Resource URL</span>
-                <input type="url" name="search" value="" required>
-          </label>
-        </fieldset>
-        <button type="submit">Add this resource</button>
-      </form>
+    <form action="<%= `${adminRoute}/resource/new` %>" method="post">
+      <!-- TODO: MAKE DESCRIPTION BOX BIGGER; HAVE FORM SUBMISSION SEND TO DATABASE AND THEN RENDER TO RESOURCES.EJS -->
+      <!-- Check for demo code seattle-301d51/class-13/demo/views/pages/add-view.ejs 
+        - Also check class-11/demos/forms/public/index.html for a better way to do labels.
+        - Use textarea element for description.
+      -->
+      <fieldset>
+        <legend>Add a Resource</legend>
+        <label for="title">
+          <span>Resource Title</span>
+          <input type="text" name="title" value="" required>
+        </label>
+        <label for="description">
+          <span>Description</span>
+          <input type="text" name="description" value="" style="height:30px;" required>
+        </label>
+        <label for="resource_url">
+          <span>Resource URL</span>
+          <input type="url" name="resource_url" value="">
+        </label>
+      </fieldset>
+      <button type="submit">Add this resource</button>
+    </form>
 
 
   </main>

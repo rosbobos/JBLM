@@ -41,8 +41,6 @@ app.set('view engine', 'ejs');
 
 // ========== Routes ========== //
 
-// Routes In
-
 // render the Home page
 app.get('/', getHome);
 app.get('/upcoming/:count', getUpcoming);
@@ -75,7 +73,7 @@ if (adminRoute) {
   app.get(`/${adminRoute}/resource/new`, getNewResourceView);
   app.get(`/${adminRoute}/resource/edit/:id`, getEditResourceView);
 
-  // TODO: This route may be redundant.
+  // TODO: This route may be redundant.  It would be for a confirmation prompt, but this can be done on the front end.
   app.get(`/${adminRoute}/resource/delete/:id`, getDeleteResourceView);
   app.post(`/${adminRoute}/resource/new`, postNewResource);
   app.put(`/${adminRoute}/resource/edit/:id`, updateResource);
@@ -212,17 +210,18 @@ function postNewResource(req, res) {
     title,
     description,
     resource_url,
-    logo_png
-  } = request.body;
-  let values = [title, description, resource_url, logo_png];
+    // logo_png
+  } = req.body;
+  let values = [title, description, resource_url];
 
-  console.log(title);
+  console.log(values);
 
-  let sql = 'INSERT INTO resource (title, description, resource_url, logo_png) VALUES($1, $2, $3, $4);';
+  let sql = 'INSERT INTO resource (title, description, resource_url) VALUES($1, $2, $3);';
   client
     .query(sql, values)
     .then(sqlResults => {
       // res.redirect(`/${adminRoute}`);
+      getAdminView(req, res);
     })
     .catch(err => handleError(err, res));
 }
@@ -239,6 +238,10 @@ function deleteResource(req, res) {
     .query(sql, values)
     .then(sqlResults => {
       console.log('deleteResource() success');
+
+      // TODO: should go to getAdminView(req, res);
+      getResourceAdminList(req, res);
+
       // res.redirect(303, `/${adminRoute}`);
     })
     .catch(err => handleError(err, res));

@@ -11,3 +11,16 @@ setInterval(function() {
     .end()
     .appendTo('#slideshow');
 }, 8000);
+
+function loadData() {
+  $.get('/upcoming/5', calendarItems => {
+    const section = $('#upcoming');
+    calendarItems.forEach(item => {
+      let el = $('<p></p>');
+      el.text(item);
+      section.append(el);
+    });
+  });
+}
+
+$().ready(loadData);
