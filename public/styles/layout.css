@@ -4,115 +4,11 @@ body{
 }
 
 
-h1{
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 2em;
-    display: inline;
-    margin-left: 3em;
-    font-weight: bold;
-}
-
-
-
-/* background from: https://www.duda.co/blog/11-tips-designing-great-website-headers/ */
-#header{
-    background:linear-gradient(218.02deg, rgb(8, 33, 255) 0%,rgb(255, 255, 255), rgb(240, 39, 4) 100%);
-    height: 6em;
-}
-
-
-
-
-
-.calendar{
-    color:white;
-    /* float: right; */
-    text-decoration: underline;
-    margin-right: 2em;
-    margin-left: 50em;
-    line-height: 7em;
-    /* position: absolute;  */
-    display: inline;
-    right: 8em;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
-    /* opacity: .5; */
-}
-
-.resources{
-    color:white;
-    /* float: right; */
-    text-decoration: underline;
-    margin-right: 2em;
-    line-height: 7em;
-    /* position: absolute;  */
-    display: inline;
-    /* right: 1em; */
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
-    /* opacity: .5; */
-    
-}
-
-.resources:hover{
-color: black;
-}
-
-.calendar:hover{
-    color:black;
-}
-
-
-
-
-
-
-
-/* nav bar in header */
-/* #nav{ */
-    /* z-index: -1; */
-    /* height: 10%; */
-    /* width: 100%;  */
-/* } */
- 
-
-
-.container{
-    /* width:100%; */
-    margin-top: .30em;
-}
-
-
-footer{
-    background:rgb(168, 168, 236);
-    /* margin-top: 50px; */
-    height: 90px;
-
-}
-
-/* contact info in footer */
-#contact{
-    color: white;
-    float: right;
-    height: 25px;
-    margin-top:11px;
-    margin-right:5px;
-
-}
-
-
-/* home/calendar/resources in footer */
-.home2{
-    margin: 5px 5px 5px 10px;
-    float: left;
-    color: white;
-    /* line-height: 90px; */
-}
-
 /* calendar */
 iframe{
     margin-left: 25vh;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 
 
 }
@@ -135,36 +31,36 @@ iframe{
 
 
 
-#icons{
-    float: right;
-    /* margin-bottom: 25em;  */
-    /* margin-top: 10em; */
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-right:50px;
-}
 
 
 
 #fbicon{
-    width:50px;
-    height:50px;
-    margin-right: 5px;
-    /* border-radius: 8px; */
+    width:51px;
+    height:51px;
+    float: right;
+    margin-right:.5em;
+    /* margin-right: 5px; */
+    border-radius: 6px;
+    /* margin-left: 5px; */
 }
 
 #linkicon{
-    width:50px;
-    /* border-radius: 35px; */
-    height:50px;
-    margin-right: 5px;
+    width:52px;
+    border-radius: 7px;
+    height:52px;
+    margin-right: .5em;
+    float: right;
+
+    
 }
 
 #emailicon{
     width:52px;
     height:52px;
     /* margin-right: 2px; */
+    border-radius: 9px;
+    float: right;
+
 
 }
 
@@ -172,15 +68,20 @@ iframe{
     width:52px;
     height:52px;
     border-radius: 5px;
-    margin-right: 5px;
+    margin-right: .5em;
+    float: right;
+
 
 }
 
 #instaicon{
     width: 54px;
     height: 54px;
-    margin-right: 5px;
+    margin-right: .5em;
     margin-top: 2px;
+    border-radius: 16px;
+    float: right;
+
 
 }
 
