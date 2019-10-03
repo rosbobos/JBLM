@@ -20,19 +20,30 @@
         <h5>Title:<%= partner.title %></h5>
         <p><%= partner.description %></p>
         <a href="<%= partner.resource_url %>"><%= partner.resource_url %></a>
+
+        <!-- Edit and Delete links -->
+        <!-- /${adminRoute}/resource/edit/:id -->
+        <a href="<%= `/${adminRoute}/resource/edit/${partner.id}` %>">Edit</a>
+        <!-- this should actually be a PUT with _method of delete after a confirmation prompt -->
+        <button
+          onclick="$.ajax({url: '<%= `/${adminRoute}/resource/delete/${partner.id}` %>', type: 'DELETE', success: function(result) {}});">
+          Delete
+        </button>
       </li>
       <% }) %>
 
     </ul>
+    <a href="/<%= adminRoute %>">Admin Page</a>
   </main>
-
   <section>
 
   </section>
 
 
   <%- include('../../partials/footer') %>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="/js/app.js"></script>
 </body>
 
 </html>

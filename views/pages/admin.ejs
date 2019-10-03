@@ -7,6 +7,26 @@
   <%- include('../partials/header') %>
   <h2>Admin</h2>
   <main>
+      <form action="<%= `${adminRoute}/resource/new` %>" method='post'>
+        <!-- TODO: MAKE DESCRIPTION BOX BIGGER; HAVE FORM SUBMISSION SEND TO DATABASE AND THEN RENDER TO RESOURCES.EJS -->
+        <fieldset>
+          <label for="title">
+            <span>Resource Title</span>
+            <input type="text" value="" required>
+          </label>
+          <label for="description">
+            <span>Description</span>
+            <input type="text" name="search" value="" style= "height:30px;" required>
+          </label>
+          <label for="resource_url">
+                <span>Resource URL</span>
+                <input type="url" name="search" value="" required>
+          </label>
+        </fieldset>
+        <button type="submit">Add this resource</button>
+      </form>
+
+
   </main>
   <%- include('../partials/footer') %>
 </body>

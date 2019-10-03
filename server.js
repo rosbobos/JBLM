@@ -74,6 +74,8 @@ if (adminRoute) {
   app.get(`/${adminRoute}/resource`, getResourceAdminList);
   app.get(`/${adminRoute}/resource/new`, getNewResourceView);
   app.get(`/${adminRoute}/resource/edit/:id`, getEditResourceView);
+
+  // TODO: This route may be redundant.
   app.get(`/${adminRoute}/resource/delete/:id`, getDeleteResourceView);
   app.post(`/${adminRoute}/resource/new`, postNewResource);
   app.put(`/${adminRoute}/resource/edit/:id`, updateResource);
@@ -125,7 +127,18 @@ function getCalendarItemDetail(req, res) {
 }
 
 function getAdminView(req, res) {
-  res.render('pages/admin');
+  const sql = 'SELECT id, title, description, resource_url, logo_png FROM resource ORDER BY title DESC;';
+
+  client
+    .query(sql)
+    .then(sqlResults => {
+      console.log('sql results', sqlResults.rows);
+      res.render('pages/admin', {
+        adminRoute: adminRoute,
+        resource: sqlResults.rows
+      });
+    })
+    .catch(err => handleError(err, res));
 }
 
 function getEventAdminList(req, res) {
@@ -164,6 +177,7 @@ function getResourceAdminList(req, res) {
     .then(sqlResults => {
       console.log('sql results', sqlResults.rows);
       res.render('pages/resource/list', {
+        adminRoute: adminRoute,
         resource: sqlResults.rows
       });
     })
@@ -179,11 +193,38 @@ function getEditResourceView(req, res) {
 }
 
 function getDeleteResourceView(req, res) {
-  res.render('pages/resource/delete-item');
+  // TODO: This route may by redundant
+  res.render('pages/resource/delete-item', {
+    adminRoute: adminRoute,
+  });
 }
 
 function postNewResource(req, res) {
-  res.redirect(`/${adminRoute}`);
+/**
+ * id SERIAL PRIMARY KEY,
+ * title varchar(255),
+ * description text,
+ * resource_url varchar(255),
+ * logo_png bytea
+ */
+
+  let {
+    title,
+    description,
+    resource_url,
+    logo_png
+  } = request.body;
+  let values = [title, description, resource_url, logo_png];
+
+  console.log(title);
+
+  let sql = 'INSERT INTO resource (title, description, resource_url, logo_png) VALUES($1, $2, $3, $4);';
+  client
+    .query(sql, values)
+    .then(sqlResults => {
+      // res.redirect(`/${adminRoute}`);
+    })
+    .catch(err => handleError(err, res));
 }
 
 function updateResource(req, res) {
@@ -191,7 +232,17 @@ function updateResource(req, res) {
 }
 
 function deleteResource(req, res) {
-  res.redirect(`/${adminRoute}`);
+  let values = [req.params.id];
+  let sql = 'DELETE FROM resource WHERE id = $1;';
+  console.log('deleteResource() values', values);
+  client
+    .query(sql, values)
+    .then(sqlResults => {
+      console.log('deleteResource() success');
+      // res.redirect(303, `/${adminRoute}`);
+    })
+    .catch(err => handleError(err, res));
+  //res.redirect(`/${adminRoute}`);
 }
 
 function testPDF(req, res) {
@@ -212,8 +263,7 @@ function handleError(err, response) {
       .status(500)
       .render('pages/error', {
         header: 'Uh Oh something went wrong :(',
-        //TODO: create constructor to display JSON err obj for client
-        // error: JSON.stringify(err)
+        error: err.toString()
       });
   }
 }
