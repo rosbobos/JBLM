@@ -1,6 +1,6 @@
 'use strict';
 
-
+// Credit: https://css-tricks.com/snippets/jquery/simple-auto-playing-slideshow/
 $('#slideshow > div:gt(0)').hide();
 
 setInterval(function() {

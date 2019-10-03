@@ -4,34 +4,77 @@ body{
 }
 
 
-/* nav bar in header */
-#nav{
-    /* z-index: -1; */
-    height: 10%;
-    width: 100%; 
-}
- 
-/* tabs in header */
-.home{
-    margin: 15px;
-    float: right;
-    line-height: 50px;
-    color: red;
+h1{
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2em;
+    display: inline;
+    margin-left: 3em;
+    font-weight: bold;
 }
 
 
 
-/* logo in header */
-#logo{
-    border: 2px solid white;
-    margin:15px;
-    line-height: 50px;
-    border-radius:10px;
-    padding-left: 2.5px;
-    padding-right: 2.5px;
-    float: left;
+/* background from: https://www.duda.co/blog/11-tips-designing-great-website-headers/ */
+#header{
+    background:linear-gradient(218.02deg, rgb(8, 33, 255) 0%,rgb(255, 255, 255), rgb(240, 39, 4) 100%);
+    height: 6em;
+}
+
+
+
+
+
+.calendar{
     color:white;
+    /* float: right; */
+    text-decoration: underline;
+    margin-right: 2em;
+    margin-left: 50em;
+    line-height: 7em;
+    /* position: absolute;  */
+    display: inline;
+    right: 8em;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    /* opacity: .5; */
 }
+
+.resources{
+    color:white;
+    /* float: right; */
+    text-decoration: underline;
+    margin-right: 2em;
+    line-height: 7em;
+    /* position: absolute;  */
+    display: inline;
+    /* right: 1em; */
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    /* opacity: .5; */
+    
+}
+
+.resources:hover{
+color: black;
+}
+
+.calendar:hover{
+    color:black;
+}
+
+
+
+
+
+
+
+/* nav bar in header */
+/* #nav{ */
+    /* z-index: -1; */
+    /* height: 10%; */
+    /* width: 100%;  */
+/* } */
+ 
+
 
 .container{
     /* width:100%; */
@@ -40,7 +83,7 @@ body{
 
 
 footer{
-    background: rgb(170, 199, 231);
+    background:rgb(168, 168, 236);
     /* margin-top: 50px; */
     height: 90px;
 
@@ -62,33 +105,18 @@ footer{
     margin: 5px 5px 5px 10px;
     float: left;
     color: white;
+    /* line-height: 90px; */
 }
 
 /* calendar */
 iframe{
-    margin-left: 10vh;
+    margin-left: 25vh;
     margin-top: 1em;
-
-}
-
-/* .carousel-inner{
-    height:70vh;
-    border-radius:5px;
+    margin-bottom: 1em;
 
 
 }
 
-.carousel-inner > .item {
-        width:100%;
-        height:100%;
-
-}
-
-      .carousel-inner > .item > img {
-        width:100%;
-        height:100%;
-       
-      } */
 
 
 
@@ -164,20 +192,13 @@ iframe{
 
 
 
-
-
-
-
-
-
-
 #slideshow {
     /* z-index: -1; */
     margin-bottom:5em;
-    margin-left: -.61em;
+    /* margin-left: -.61em; */
     /* margin: 80px auto; */
     position: relative;
-    width: 89em;
+    width: auto;
     height: 40em;
     /* padding: 10px; */
     /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); */
@@ -187,9 +208,9 @@ iframe{
       width: 100%;
       height: 100%;
     position: absolute;
-    top: 10px;
-    left: 10px;
-    right: 10px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
     bottom: 10px;
   }
 
@@ -198,3 +219,8 @@ iframe{
     width: 100%;
     height: 100%;
 }
+
+
+
+
+
