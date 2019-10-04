@@ -16,31 +16,45 @@ iframe{
 
 
 
-#top5{
-    margin: 10px 50px 10px 50px;
-    border:2px solid red;
-    /* display: inline; */
-    padding: 5px;
+
+
+/* upcoming title */
+#upcoming_events{
+    font-size: 2em;
+    margin: 1em 0 1em 1.8em;
+    text-decoration: underline;
+}
+.upcoming-item{
+    color: black;
+    margin: 0 0 1em 1.5em;
+    font-size: 1.5em;
+    
 }
 
-/* 
 #news{
-    margin: 0 auto;
-    width: 100px;
-} */
+    margin-left: 35em;
+    /* width: 100%; */
+    margin-top: -19em;
+} 
 
+.upcoming-title{
+    margin-left:.50em;
+}
 
-
-
+.upcoming-start-time{
+    margin-left: .50em;
+    margin-right: .50em;
+}
 
 
 #fbicon{
     width:51px;
     height:51px;
-    float: right;
+    /* float: right; */
     margin-right:.5em;
-    /* margin-right: 5px; */
+    margin-left: 67.8em;
     border-radius: 6px;
+    margin-top: 1em;
     /* margin-bottom: 10em; */
     /* margin-left: 5px; */
 }
@@ -50,7 +64,7 @@ iframe{
     border-radius: 7px;
     height:52px;
     margin-right: .5em;
-    float: right;
+    /* float: right; */
 
     
 }
@@ -58,9 +72,8 @@ iframe{
 #emailicon{
     width:52px;
     height:52px;
-    /* margin-right: 2px; */
     border-radius: 9px;
-    float: right;
+    /* float: right; */
 
 
 }
@@ -70,7 +83,8 @@ iframe{
     height:52px;
     border-radius: 5px;
     margin-right: .5em;
-    float: right;
+    /* margin-bottom: 1em; */
+    /* float: right; */
 
 
 }
@@ -81,7 +95,7 @@ iframe{
     margin-right: .5em;
     margin-top: 2px;
     border-radius: 16px;
-    float: right;
+    /* float: right; */
 
 
 }
@@ -135,6 +149,61 @@ iframe{
 }
 
 
+.upcoming-date{
+    margin-left: 20px;
+}
 
 
 
+#recfooter{
+margin-top: 3em;
+}
+
+#newsAr{
+    font-size: 2em;
+    margin-bottom: -.60em;
+    text-decoration: underline;
+    /* margin: 1em 0 0 1em; */
+
+}
+
+
+.newstitle{
+    font-size: 1.5em;
+margin-bottom: .25em;
+/* margin-top: 2em; */
+font-weight: bold;
+
+}
+
+.newstime{
+    font-size: 1.5em;
+margin-bottom: .25em;
+
+
+}
+
+.newsinfo{
+    font-size: 1.5em;
+margin-bottom: .25em;
+
+
+
+}
+
+.newsurl{
+font-size: 1.5em;
+
+/* margin-bottom: 10em; */
+
+}
+
+article{
+    background:rgb(240, 238, 238);
+    padding: .5em;
+    margin-bottom: 2em;
+    /* padding-top: .45em; */
+    /* padding-bottom: .45em; */
+    margin-right: 2em;
+    margin-top: 2.5em;
+}
