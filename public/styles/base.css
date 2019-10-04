@@ -1,1 +1,12 @@
 /* this is a comment  */
+
+*{
+    max-width: 1600px;
+    
+}
+
+html{
+    margin: auto;
+
+}
+

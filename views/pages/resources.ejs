@@ -20,7 +20,7 @@
         <h5 class="rr rt"><%= partner.title %></h5>
         <p class="rr dt"><%= partner.description %></p>
         <a class="rr" href="<%= partner.resource_url %>"><%= partner.resource_url %></a>
-        <a id="pdf" href="/pdf">PDF</a>
+        <!-- <a id="pdf" href="/pdf">PDF</a> -->
       </li>
       <% }) %>
 
@@ -30,7 +30,8 @@
 
 
 
-    <div id="copyright3"> &copy; 2019 JBLM Unlimited</div>
+
+  <%- include('../partials/footer') %>
     
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
