@@ -57,5 +57,6 @@ function loadNews() {
   });
 }
 
+
 $().ready(loadData);
 $().ready(loadNews);
