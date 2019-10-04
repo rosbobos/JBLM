@@ -39,18 +39,20 @@ function loadNews() {
     const section = $('#news');
     newsArray.forEach(news => {
       console.log('THIS IS NEWS ARRAY =====:', news);
-      let newsTitle = $('<h5></h5>');
+      let articleElement = $('<article></article>');
+      let newsTitle = $('<h5 class= "newstitle"></h5>');
       newsTitle.text(news.title);
-      let newsUpdated = $('<p></p>');
+      let newsUpdated = $('<p class="newstime"></p>');
       newsUpdated.text(news.updated);
-      let newsAbstract = $('<p></p>');
+      let newsAbstract = $('<p class= "newsinfo"></p>');
       newsAbstract.text(news.summary);
       let newsLink = news.url;
-      let newsURL = $( `<a href="${newsLink}">See more about this news</a>`);
-      section.append(newsTitle);
-      section.append(newsUpdated);
-      section.append(newsAbstract);
-      section.append(newsURL);
+      let newsURL = $( `<a class="newsurl" href="${newsLink}">See more about this news</a>`);
+      articleElement.append(newsTitle);
+      articleElement.append(newsUpdated);
+      articleElement.append(newsAbstract);
+      articleElement.append(newsURL);
+      section.append(articleElement);
     });
   });
 }
