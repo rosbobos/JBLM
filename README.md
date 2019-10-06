@@ -10,6 +10,9 @@ Biniam Tesfamarian, Elle Young, Karina Chen, Jon Kimball
 Clearly defined database schemas -->
 ### 
 
+### App Set Up Instructions
+Once Google account and Heroku account are handovered to the client. The client should change the passwords right away. Then, the client will need to log in to Google account and edit google calendar settings, events, and schedules to client's desire. The google account can be shared with multiple admin users. For Heroku account, the client may change to their own desired hosted website if do not want to host the website with Heroku. For admin route to access Admin page for JBLM Unlimited, the client should contact developers to set up an unique route. If necessary, please see below NECESSARY PACKAGES to install all the midware we used to run this project.
+
 **NECESSARY PACKAGES:**
 Required: express, pg, fs, superagent, methodOverride
 
