@@ -1,209 +1,251 @@
-
-body{
-    background: white;
+/* copyright in the footer */
+#copyright{
+    background: rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+    height: 3em;
+    line-height: 3em;
 }
 
-
-/* calendar */
-iframe{
-    margin-left: 25vh;
-    margin-top: 2em;
-    /* margin-bottom: 2em; */
-
-
-}
-
-
-
-
-
-
-/* upcoming title */
-#upcoming_events{
+h1{
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 2em;
-    margin: 1em 0 1em 1.8em;
+    display: inline;
+    margin-left: 3em;
+    font-weight: bold;
+}
+
+
+
+/* background from: https://www.duda.co/blog/11-tips-designing-great-website-headers/ */
+#header{
+    background:linear-gradient(218.02deg, rgb(8, 33, 255) 0%,rgb(255, 255, 255), rgb(255, 39, 1) 90%);
+    height: 6em;
+}
+
+
+
+.calendar{
+    color:white;
+    /* float: right; */
     text-decoration: underline;
-}
-.upcoming-item{
-    color: black;
-    margin: 0 0 1em 1.5em;
-    font-size: 1.5em;
-    
-}
-
-#news{
-    margin-left: 35em;
-    /* width: 100%; */
-    margin-top: -19em;
-} 
-
-.upcoming-title{
-    margin-left:.50em;
-}
-
-.upcoming-start-time{
-    margin-left: .50em;
-    margin-right: .50em;
-}
-
-
-#fbicon{
-    width:51px;
-    height:51px;
-    /* float: right; */
-    margin-right:.5em;
-    margin-left: 67.8em;
-    border-radius: 6px;
-    margin-top: 1em;
-    /* margin-bottom: 10em; */
-    /* margin-left: 5px; */
-}
-
-#linkicon{
-    width:52px;
-    border-radius: 7px;
-    height:52px;
-    margin-right: .5em;
-    /* float: right; */
-
-    
-}
-
-#emailicon{
-    width:52px;
-    height:52px;
-    border-radius: 9px;
-    /* float: right; */
-
-
-}
-
-#twicon{
-    width:52px;
-    height:52px;
-    border-radius: 5px;
-    margin-right: .5em;
-    /* margin-bottom: 1em; */
-    /* float: right; */
-
-
-}
-
-#instaicon{
-    width: 54px;
-    height: 54px;
-    margin-right: .5em;
-    margin-top: 2px;
-    border-radius: 16px;
-    /* float: right; */
-
-
-}
-
-
-/* #calendar{
-    width:100px;
-} */
-
-
-
-
-#slideshow {
-    /* z-index: -1; */
-    /* margin-bottom:5em; */
-    /* margin-left: -.61em; */
-    /* margin: 80px auto; */
-    
-    
-/*     
-    position: relative;
-    width: auto;*/
-    
-    
-    /* padding: 10px; */
-    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); */
-    
-    /* Elle fixing aspect ratio  found here: https://www.geeksforgeeks.org/maintain-the-aspect-ratio-of-a-div-with-css/ */
-    position: relative; 
-        width: 100%; 
-        padding-top: 56.25%; /* 16:9 Aspect Ratio */ 
-    
-  }
-  
-  #slideshow > div {
-      width: 100%;
-      /* height: 100%; */
-          /* height: 20em;  */
-
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    /* bottom: 10px; */
-  }
-
-    
-  #slideshow > div > img {
-    width: 100%;
-    /* height: 100%; */
-}
-
-
-.upcoming-date{
-    margin-left: 20px;
-}
-
-
-
-#recfooter{
-margin-top: 3em;
-}
-
-#newsAr{
-    font-size: 2em;
-    margin-bottom: -.60em;
-    text-decoration: underline;
-    /* margin: 1em 0 0 1em; */
-
-}
-
-
-.newstitle{
-    font-size: 1.5em;
-margin-bottom: .25em;
-/* margin-top: 2em; */
-font-weight: bold;
-
-}
-
-.newstime{
-    font-size: 1.5em;
-margin-bottom: .25em;
-
-
-}
-
-.newsinfo{
-    font-size: 1.5em;
-margin-bottom: .25em;
-
-
-
-}
-
-.newsurl{
-font-size: 1.5em;
-
-/* margin-bottom: 10em; */
-
-}
-
-article{
-    background:rgb(240, 238, 238);
-    padding: .5em;
-    margin-bottom: 2em;
-    /* padding-top: .45em; */
-    /* padding-bottom: .45em; */
     margin-right: 2em;
-    margin-top: 2.5em;
+    margin-left: 50em;
+    line-height: 6em;
+    /* position: absolute;  */
+    display: inline;
+    right: 8em;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    /* opacity: .5; */
 }
+
+.resources{
+    color:white;
+    /* float: right; */
+    text-decoration: underline;
+    margin-right: 2em;
+    line-height: 6em;
+    /* position: absolute;  */
+    display: inline;
+    /* right: 1em; */
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    /* opacity: .5; */
+    
+}
+
+.resources:hover{
+color: black;
+}
+
+.calendar:hover{
+    color:black;
+}
+
+
+h1{
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2em;
+    display: inline;
+    margin-left: 3em;
+    font-weight: bold;
+}
+
+
+
+
+
+/* footer */
+footer{
+    background:linear-gradient(218.02deg, rgb(8, 33, 255) 0%,rgb(255, 255, 255), rgb(240, 39, 4) 90%);
+    /* margin-top: 3em; */
+    height: 70px;
+    /* position: fixed; */
+    /* bottom: 10em; */
+    width: 100%;
+
+}
+/* contact info in footer */
+.contact{
+    color: white;
+    float: left;
+    height: 25px;
+    /* margin-top:.25em; */
+    margin-top: .25em;
+    margin-left: .25em;
+    /* margin-bottom: 1em; */
+
+
+    /* margin-right:-15em; */
+
+}
+
+/* home tab on calendar page  */
+#home2{
+    color:white;
+    /* float: right; */
+    text-decoration: underline;
+    margin-right: 2em;
+    margin-left: 50em;
+    line-height: 6em;
+    /* position: absolute;  */
+    display: inline;
+    right: 8em;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    /* opacity: .5; */
+}
+
+#resources2{
+    color:white;
+    /* float: right; */
+    text-decoration: underline;
+    margin-right: 2em;
+    line-height: 6em;
+    /* position: absolute;  */
+    display: inline;
+    /* right: 1em; */
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    /* opacity: .5; */
+    
+}
+
+#resources2:hover{
+color: black;
+}
+
+#home2:hover{
+    color:black;
+}
+
+
+
+.calendar3{
+    color:white;
+    /* float: right; */
+    text-decoration: underline;
+    margin-right: 2em;
+    line-height: 6em;
+    /* position: absolute;  */
+    display: inline;
+    right: 8em;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    /* opacity: .5; */
+}
+
+.calendar3:hover{
+    color:black;
+}
+
+.home3{
+    color:white;
+    /* float: right; */
+    text-decoration: underline;
+    margin-right: 2em;
+    margin-left: 50em;
+    line-height: 6em;
+    /* position: absolute;  */
+    display: inline;
+    right: 8em;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    /* opacity: .5; */
+}
+
+.home3:hover{
+    color:black;
+}
+
+#resources5{
+    color:white;
+    /* float: right; */
+    text-decoration: underline;
+    /* margin-right: 2em; */
+    line-height: 6em;
+    /* position: absolute;  */
+    display: inline;
+    /* right: 1em; */
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";;
+    /* opacity: .5; */
+    
+}
+
+#resources5:hover{
+color: black;
+}
+
+
+
+
+#admin{
+    text-align: center;
+    margin-top:1em;
+    margin-bottom: 2em;
+    font-size: 2em;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+
+}
+
+
+form{
+    text-align: center;
+}
+
+legend{
+    margin-bottom: .75em;
+}
+
+button{
+    margin-top: 1em;
+    margin-left: 50em;
+    margin-bottom: 30em;
+}
+
+
+
+h4{
+    text-align: center;
+    margin-top:.75em;
+    font-size: 2em;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.rr{
+    margin-left: 5em;
+    /* margin-right: 5em; */
+}
+
+.rt{
+    margin-top:5em;
+    /* margin-right: 5em; */
+
+}
+
+.dt{
+    margin-right: 5em;
+}
+
+#pdf{
+    margin-left: 1em;
+}
+
+
+
