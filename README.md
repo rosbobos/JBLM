@@ -3,24 +3,37 @@
 # JBLM Unlimited Website
  VERSION 1.0.0
 
-# Names of the team members:
+## Names of the team members:
 Biniam Tesfamarian, Elle Young, Karina Chen, Jon Kimball
 
 <!-- TODO: Clearly defined API endpoints with sample responses
 Clearly defined database schemas -->
 ### 
 
-### App Set Up Instructions
-Once Google account and Heroku account are handovered to the client. The client should change the passwords right away. Then, the client will need to log in to Google account and edit google calendar settings, events, and schedules to client's desire. The google account can be shared with multiple admin users. For Heroku account, the client may change to their own desired hosted website if do not want to host the website with Heroku. For admin route to access Admin page for JBLM Unlimited, the client should contact developers to set up an unique route. If necessary, please see below NECESSARY PACKAGES to install all the midware we used to run this project.
+## App Set Up Instructions
+Once Google account and Heroku account are handed over to the client. The client should change the passwords right away. Then, the client will need to log in to Google account and edit google calendar settings, events, and schedules to client's desire. The google account can be shared with multiple admin users. For Heroku account, the client may change to their own desired hosted website if do not want to host the website with Heroku. For admin route to access Admin page for JBLM Unlimited, the client should contact developers to set up an unique route. If necessary, please see below NECESSARY PACKAGES to install all the middleware we used to run this project.
 
 **NECESSARY PACKAGES:**
-Required: express, pg, fs, superagent, methodOverride
+
+Required: express, pg, fs, superagent, method-override, readline, googleapis
 
 _**.env file setup**_ 
 
 PORT:3000 || 3001
 
 DATABASE_URL: postgres://localhost:5432/jblm_unlimited_cf19
+
+### Mac
+
+DATABASE_URL=postgress://localhost:5432/jblm_unlimited_cf19
+
+### PC
+
+DATABASE_URL=postgress://\<username>:\<password>@localhost:5432/jblm_unlimited_cf19
+
+ Apply schema file to the app using command
+
+* heroku pg:psql -f schema.sql --app \<your-heroku-app-name-here>
 
 **ADMIN_ROUTE: RESERVED FOR DEVELOPER PLEASE CONTACT**
 
@@ -77,8 +90,6 @@ Inside the view detail page of each event, be able to attach PDF files or fliers
 
 Admin Page:
 Create a basic username/password login security system for admin users. Let the admin users to update/change events on Calendar page and on Resource page.
-
-
 
 ### Special thanks to all the people of the internet that helped! Here is our resource list:
 
