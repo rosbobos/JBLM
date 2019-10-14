@@ -7,8 +7,8 @@ const pg = require('pg');
 const superagent = require('superagent');
 const methodOverride = require('method-override');
 
-const googleCalendarAPI = require('./googleapi');
-const GCA = new googleCalendarAPI();
+const GoogleCalendarAPI = require('./googleapi');
+const GCA = new GoogleCalendarAPI();
 
 // TODO: fix to get event list properly
 let eventListCache = GCA.getEventList();
@@ -23,15 +23,19 @@ const PORT = process.env.PORT || 3001;
 // ========== App Middleware ========== //
 app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
-app.use(methodOverride((request, response) => {
-  console.log('methodOverride Callback');
-  if (request.body && typeof request.body === 'object' && '_method' in request.body) {
-    let method = request.body._method;
-    console.log(method);
-    delete request.body._method;
+app.use(methodOverride((req, res) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    let method = req.body._method;
+    delete req.body._method;
     return method;
   }
 }));
+
+// Log all invoked routes to console
+app.use((req, res, next) => {
+  console.log(`==>> ${req.method} ${req.originalUrl} ...`);
+  next();
+});
 
 // ========== Database Setup ========== //
 const client = new pg.Client(process.env.DATABASE_URL);
@@ -51,34 +55,17 @@ app.get('/nytimes/news', getNews);
 app.get('/calendar', getCalendar);
 // render the Resource page
 app.get('/resources', getResources);
-app.get('/calendar/:item_id', getCalendarItemDetail);
-
+// produce the email link
 app.get('/email', getEmailLink);
 
-app.get('/pdf', testPDF);
-
-// render the Admin page
-// app.get('/edit-mode/authority/admin', renderAdmin);
+// render the Admin pages
 const adminRoute = process.env.ADMIN_ROUTE;
 
 // Make sure we do not set up the routes if ADMIN_ROUTE is not defined.
 if (adminRoute) {
   app.get(`/${adminRoute}`, getAdminView);
-  app.get(`/${adminRoute}/calendar`, getEventAdminList);
-  app.get(`/${adminRoute}/calendar/new`, getNewEventView);
-  app.get(`/${adminRoute}/calendar/edit`, getEditEventView);
-  app.get(`/${adminRoute}/calendar/delete`, getDeleteEventView);
-  app.post(`/${adminRoute}/calendar/new`, postNewEvent);
-  app.put(`/${adminRoute}/calendar/edit`, updateEvent);
-  app.delete(`/${adminRoute}/calendar/delete`, deleteEvent);
   app.get(`/${adminRoute}/resource`, getResourceAdminList);
-  app.get(`/${adminRoute}/resource/new`, getNewResourceView);
-  app.get(`/${adminRoute}/resource/edit/:id`, getEditResourceView);
-
-  // TODO: This route may be redundant.  It would be for a confirmation prompt, but this can be done on the front end.
-  app.get(`/${adminRoute}/resource/delete/:id`, getDeleteResourceView);
   app.post(`/${adminRoute}/resource/new`, postNewResource);
-  app.put(`/${adminRoute}/resource/edit/:id`, updateResource);
   app.delete(`/${adminRoute}/resource/delete/:id`, deleteResource);
 } else {
   console.log('no ADMIN_ROUTE .env value');
@@ -99,7 +86,6 @@ function getHome(req, res) {
 // TODO: eventList cache needs to be better managed!
 function getUpcoming(req, res) {
   let eventList = GCA.getEventList();
-  console.log('The current event list: \n', eventList);
   res.send(eventList);
 }
 
@@ -109,24 +95,13 @@ function getNews(req, res) {
     .then(newsResults => {
       const newsParse = JSON.parse(newsResults.text);
       let newsArray = [];
-      if (newsParse.results.length > 5) {
-        for (let i = 0; i < 5; i++) {
-          const title = newsParse.results[i].title;
-          const updated = newsParse.results[i].updated;
-          const abstract = newsParse.results[i].abstract;
-          const url = newsParse.results[i].url;
-          const newNews = new NYNews(title, updated, abstract, url);
-          newsArray.push(newNews);
-        }
-      } else {
-        for (let i = 0; i < newsParse.results.length; i++) {
-          const title = newsParse.results[i].title;
-          const updated = newsParse.results[i].updated;
-          const abstract = newsParse.results[i].abstract;
-          const url = newsParse.results[i].url;
-          const newNews = new NYNews(title, updated, abstract, url);
-          newsArray.push(newNews);
-        }
+      for (let i = 0; i < Math.min(5, newsParse.results.length); i++) {
+        const title = newsParse.results[i].title;
+        const updated = newsParse.results[i].updated;
+        const abstract = newsParse.results[i].abstract;
+        const url = newsParse.results[i].url;
+        const newNews = new NYNews(title, updated, abstract, url);
+        newsArray.push(newNews);
       }
       res.send(newsArray);
     })
@@ -143,7 +118,6 @@ function getResources(req, res) {
   client
     .query(sql)
     .then(sqlResults => {
-      console.log('sql results', sqlResults.rows);
       res.render('pages/resources', { resource: sqlResults.rows });
     })
     .catch(err => handleError(err, res));
@@ -153,17 +127,12 @@ function getEmailLink(req, res) {
   res.redirect(`${process.env.EMAIL}`);
 }
 
-function getCalendarItemDetail(req, res) {
-  res.render('pages/calendar/item');
-}
-
 function getAdminView(req, res) {
   const sql = 'SELECT id, title, description, resource_url, logo_png FROM resource ORDER BY title DESC;';
 
   client
     .query(sql)
     .then(sqlResults => {
-      // console.log('sql results', sqlResults.rows);
       res.render('pages/admin', {
         adminRoute: adminRoute,
         resource: sqlResults.rows
@@ -172,41 +141,12 @@ function getAdminView(req, res) {
     .catch(err => handleError(err, res));
 }
 
-function getEventAdminList(req, res) {
-  res.render('pages/calendar/list');
-}
-
-function getNewEventView(req, res) {
-  res.render('pages/calendar/new-item');
-}
-
-function getEditEventView(req, res) {
-  res.render('pages/calendar/edit-item');
-}
-
-function getDeleteEventView(req, res) {
-  res.render('pages/calendar/delete-item');
-}
-
-function postNewEvent(req, res) {
-  res.redirect(`/${adminRoute}`);
-}
-
-function updateEvent(req, res) {
-  res.redirect(`/${adminRoute}`);
-}
-
-function deleteEvent(req, res) {
-  res.redirect(`/${adminRoute}`);
-}
-
 function getResourceAdminList(req, res) {
   const sql = 'SELECT id, title, description, resource_url, logo_png FROM resource ORDER BY title DESC;';
 
   client
     .query(sql)
     .then(sqlResults => {
-      // console.log('sql results', sqlResults.rows);
       res.render('pages/resource/list', {
         adminRoute: adminRoute,
         resource: sqlResults.rows
@@ -215,74 +155,29 @@ function getResourceAdminList(req, res) {
     .catch(err => handleError(err, res));
 }
 
-function getNewResourceView(req, res) {
-  res.render('pages/resource/new-item');
-}
-
-function getEditResourceView(req, res) {
-  res.render('pages/resource/edit-item');
-}
-
-function getDeleteResourceView(req, res) {
-  // TODO: This route may by redundant
-  res.render('pages/resource/delete-item', {
-    adminRoute: adminRoute,
-  });
-}
-
 function postNewResource(req, res) {
-/**
- * id SERIAL PRIMARY KEY,
- * title varchar(255),
- * description text,
- * resource_url varchar(255),
- * logo_png bytea
- */
-
-  let {
-    title,
-    description,
-    resource_url,
-    // logo_png
-  } = req.body;
+  let { title, description, resource_url } = req.body;
   let values = [title, description, resource_url];
 
   let sql = 'INSERT INTO resource (title, description, resource_url) VALUES($1, $2, $3);';
   client
     .query(sql, values)
     .then(sqlResults => {
-      // res.redirect(`/${adminRoute}`);
-      getResourceAdminList(req, res);
+      res.redirect(303, `/${adminRoute}/resource`);
+      // getResourceAdminList(req, res);
     })
     .catch(err => handleError(err, res));
-}
-
-function updateResource(req, res) {
-  res.redirect(`/${adminRoute}`);
 }
 
 function deleteResource(req, res) {
   let values = [req.params.id];
   let sql = 'DELETE FROM resource WHERE id = $1;';
-  console.log('deleteResource() values', values);
   client
     .query(sql, values)
     .then(sqlResults => {
-      console.log('deleteResource() success');
-
-      // TODO: should go to getAdminView(req, res); make sure this has the desired result!
-      // getResourceAdminList(req, res);
-
       res.redirect(303, `/${adminRoute}/resource`);
     })
     .catch(err => handleError(err, res));
-  //res.redirect(`/${adminRoute}`);
-}
-
-function testPDF(req, res) {
-  var data = fs.readFileSync('./data/test.pdf');
-  res.contentType('application/pdf');
-  res.send(data);
 }
 
 // ========== News Constructor Object ========== //

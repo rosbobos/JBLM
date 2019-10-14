@@ -17,11 +17,10 @@ const TOKEN_PATH = 'token.json';
 
 let eventList = [];
 
-function googleCalendarAPI() {
-  // this.eventList = [];
+function GoogleCalendarAPI() {
 }
 
-googleCalendarAPI.prototype.getEventList = function () {
+GoogleCalendarAPI.prototype.getEventList = function () {
   // Load client secrets from a local file.
   fs.readFile('credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
@@ -34,6 +33,10 @@ googleCalendarAPI.prototype.getEventList = function () {
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
+ *
+ * Credit: This function is taken from from the Google API
+ * documentation at https://developers.google.com/calendar/quickstart/nodejs
+ *
  * @param {Object} credentials The authorization client credentials.
  * @param {function} callback The callback to call with the authorized client.
  */
@@ -53,6 +56,10 @@ function authorize(credentials, callback) {
 /**
  * Get and store new token after prompting for user authorization, and then
  * execute the given callback with the authorized OAuth2 client.
+ *
+ * Credit: This function is taken from from the Google API
+ * documentation at https://developers.google.com/calendar/quickstart/nodejs
+ *
  * @param {google.auth.OAuth2} oAuth2Client The OAuth2 client to get token for.
  * @param {getEventsCallback} callback The callback for the authorized client.
  */
@@ -84,6 +91,10 @@ function getAccessToken(oAuth2Client, callback) {
 /**
  * Lists the next 5 events on the user's primary calendar.
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+ *
+ * Credit: This is a modified version of function taken from from the
+ * Google API documentation at
+ * https://developers.google.com/calendar/quickstart/nodejs
  */
 function listEvents(auth) {
   const calendar = google.calendar({version: 'v3', auth});
@@ -97,8 +108,7 @@ function listEvents(auth) {
     if (err) return console.log('The API returned an error: ' + err);
     const events = res.data.items;
     if (events.length) {
-      console.log('Upcoming 5 events:');
-      eventList = [];
+      const newEventList = [];
       events.map((event, i) => {
         const eventStartDate = event.start.dateTime.slice(0,10);
         const eventStartTime = event.start.dateTime.slice(11,16);
@@ -107,25 +117,24 @@ function listEvents(auth) {
         const start = eventStartTime || event.start.date;
         const end = eventEndTime || 'no end time available';
         const eventTitle = event.summary || 'no title available';
-        console.log(`${date}-${start}-${end}: ${eventTitle}`);
 
         const totalEventTime = new EventTimes(date, start, end, eventTitle);
 
-        eventList.push(totalEventTime);
-      } );
+        newEventList.push(totalEventTime);
+      });
+      eventList = newEventList;
     } else {
       console.log('No upcoming events found.');
     }
-
-    // ========== Event Constructor Object ========== //
-    function EventTimes(date, start, end, eventTitle) {
-      this.date = date;
-      this.start = start;
-      this.end = end;
-      this.eventTitle = eventTitle;
-    }
-
   });
 }
 
-module.exports = googleCalendarAPI;
+// ========== Event Constructor Object ========== //
+function EventTimes(date, start, end, eventTitle) {
+  this.date = date;
+  this.start = start;
+  this.end = end;
+  this.eventTitle = eventTitle;
+}
+
+module.exports = GoogleCalendarAPI;
